@@ -10,7 +10,7 @@ on:
 
 jobs:
   convert:
-    runs-on: macos-latest
+    runs-on: macos-14
 
     steps:
       - name: Checkout repo
@@ -33,6 +33,8 @@ jobs:
           GH_TOKEN: ${{ github.token }}
 
       - name: Run conversion script
+        env:
+          PYTHONUNBUFFERED: "1"
         run: python3 convert_mac.py
 
       - name: Upload result as artifact
